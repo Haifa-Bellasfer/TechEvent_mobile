@@ -5,7 +5,6 @@
  */
 package com.esprit.gui.event;
 
-
 import static com.codename1.charts.util.ColorUtil.rgb;
 import com.codename1.components.ImageViewer;
 import com.codename1.components.SpanLabel;
@@ -38,8 +37,10 @@ public class UserEventList {
     Container co1;
     Image img1, img2;
     Boolean likeb;
+    Resources theme1;
 
     public UserEventList(Resources theme) {
+        theme1 = theme;
         f = (Form) new Form(new BoxLayout(BoxLayout.Y_AXIS));
         f.getStyle().setBgColor(rgb(255, 255, 255));
         Image img = theme.getImage("logo.png");
@@ -48,22 +49,18 @@ public class UserEventList {
         co1 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
         likeb = false;
         f.add(img);
-      
 
         EventService serviceTask = new EventService();
-         List<event> eventList = serviceTask.getEvent();
+        List<event> eventList = serviceTask.getEvent();
         for (event e : eventList) {
-                if(e.getOrganizer().getId()==Session.user.getId()){
-            co1.add(Additem(e));
-                }
+            if (e.getOrganizer().getId() == Session.user.getId()) {
+                co1.add(Additem(e));
+            }
         }
         f.add(co1);
         f.show();
 
-       
-        
-
-          Toolbar tb = f.getToolbar();
+        Toolbar tb = f.getToolbar();
         tb.addMaterialCommandToRightBar("Back", FontImage.MATERIAL_ARROW_BACK, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -75,20 +72,21 @@ public class UserEventList {
     }
 
     public Container Additem(event c) {
-        
+
         Container co = new Container(new BoxLayout(BoxLayout.Y_AXIS));
         Container co1 = new Container(new BoxLayout(BoxLayout.X_AXIS));
         Container co2 = new Container(new BoxLayout(BoxLayout.X_AXIS));
         Container co3 = new Container(new BoxLayout(BoxLayout.X_AXIS));
         Container co5 = new Container(new BoxLayout(BoxLayout.X_AXIS));
-       
+
         Container co4 = new Container(new BoxLayout(BoxLayout.X_AXIS));
         Container coInit = new Container(new BoxLayout(BoxLayout.X_AXIS));
         coInit.getStyle().setBgColor(rgb(204, 230, 255));
         EncodedImage placeholder = EncodedImage.createFromImage(Image.createImage(400, 400), true);
-
-        Image i = URLImage.createToStorage(placeholder, "http://localhost/PIDEV/dorsaf/TechEvent/web/img/uploads/" + c.getPhoto(), "http://localhost/PIDEV/dorsaf/TechEvent/web/img/uploads/" + c.getPhoto(), URLImage.RESIZE_SCALE);
-
+        Image i;
+       
+            i = URLImage.createToStorage(placeholder, "http://localhost/PIDEV/dorsaf/TechEvent/web/img/uploads/" + Session.current_event.getPhoto(), "http://localhost/PIDEV/dorsaf/TechEvent/web/img/uploads/" + Session.current_event.getPhoto(), URLImage.RESIZE_SCALE);
+       
         ImageViewer img = new ImageViewer(i);
 
         Label l1 = new Label("Name:");
@@ -96,31 +94,22 @@ public class UserEventList {
         co1.add(l1);
         co1.add(l2);
         Button b = new Button("Delete");
-       
-       
-       
-     
 
         co.add(co1);
         co.add(co3);
         co.add(co4);
 
-       
-       
         co5.add(b);
         co.add(co5);
 
         coInit.add(img);
         coInit.add(co);
 
-        
         b.addActionListener((evt) -> {
-        EventService serviceTask = new EventService();
-        serviceTask.Delete(c.getId_event());
+            EventService serviceTask = new EventService();
+            serviceTask.Delete(c.getId_event());
         });
-        
-        
-        
+
         return coInit;
 
     }

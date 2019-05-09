@@ -31,7 +31,7 @@ public class EventService {
     
     
      public void ajoutTask(event e) {
-        ConnectionRequest con = new ConnectionRequest();// création d'une nouvelle demande de connexion
+        ConnectionRequest con = new ConnectionRequest();
         String Url = "http://localhost/PIDEV/dorsaf/TechEvent/web/Api/Add?eventName="+e.getEvent_name()+"&user="+e.getOrganizer().getId()+"&address="+e.getAddress()+"&nb="+e.getNb_participant()+"&categorie="+e.getCategory().getId_category()+"&photo="+e.getPhoto()+"&price="+e.getPrice_ticket()+"&description="+e.getDescription()+"&startDate="+e.getStart_date()+"&endDate="+e.getEnd_date();// création de l'URL
          System.out.println(Url);
         con.setUrl(Url);// Insertion de l'URL de notre demande de connexion
@@ -84,8 +84,9 @@ public class EventService {
                 long t1 = (long) l1 * 10000;
                 Date d1 = new Date(l1);
                 e.setEnd_date(d1);
+                
                 e.setPhoto(obj.get("photo").toString());
-                System.out.println(e.getStatus());
+              
                  Map<String, Object> userMap = (Map<String, Object>) obj.get("organizer");
 
                 int idu=((int) Float.parseFloat(userMap.get("id").toString()));

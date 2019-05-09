@@ -5,7 +5,6 @@
  */
 package com.esprit.gui.event;
 
-
 import static com.codename1.charts.util.ColorUtil.rgb;
 import com.codename1.components.ImageViewer;
 import com.codename1.components.SpanLabel;
@@ -104,24 +103,17 @@ public class Accueil {
                 add.getF().show();
             }
         });
-        
-        
-          tb.addMaterialCommandToOverflowMenu("", FontImage.MATERIAL_ADD, new ActionListener() {
+
+     
+
+        tb.addMaterialCommandToOverflowMenu("My events Events", FontImage.MATERIAL_COLLECTIONS_BOOKMARK, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                AddEvent add = new AddEvent(theme1);
+                UserEventList add = new UserEventList(theme1);
                 add.getF().show();
             }
         });
-        
-         tb.addMaterialCommandToOverflowMenu("My events Events", FontImage.MATERIAL_COLLECTIONS_BOOKMARK, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                UserEventList add = new  UserEventList(theme1);
-                add.getF().show();
-            }
-        });
-          tb.addMaterialCommandToOverflowMenu("My Favorit Events", FontImage.MATERIAL_DESCRIPTION, new ActionListener() {
+        tb.addMaterialCommandToOverflowMenu("My Favorit Events", FontImage.MATERIAL_DESCRIPTION, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 UserLikedList add = new UserLikedList(theme1);
@@ -135,15 +127,11 @@ public class Accueil {
                 af.getF().show();
             }
         });
-        
-        
-        
-       
 
     }
 
     public Container Additem(event c) {
-        
+
         Container co = new Container(new BoxLayout(BoxLayout.Y_AXIS));
         Container co1 = new Container(new BoxLayout(BoxLayout.X_AXIS));
         Container co2 = new Container(new BoxLayout(BoxLayout.X_AXIS));
@@ -155,8 +143,10 @@ public class Accueil {
         coInit.getStyle().setBgColor(rgb(204, 230, 255));
         EncodedImage placeholder = EncodedImage.createFromImage(Image.createImage(400, 400), true);
 
-        Image i = URLImage.createToStorage(placeholder, "http://localhost/PIDEV/dorsaf/TechEvent/web/img/uploads/" + c.getPhoto(), "http://localhost/PIDEV/dorsaf/TechEvent/web/img/uploads/" + c.getPhoto(), URLImage.RESIZE_SCALE);
-
+         
+        
+          Image  i = URLImage.createToStorage(placeholder, "http://localhost/PIDEV/dorsaf/TechEvent/web/img/uploads/" + c.getPhoto(), "http://localhost/PIDEV/dorsaf/TechEvent/web/img/uploads/" + c.getPhoto(), URLImage.RESIZE_SCALE);
+       
         ImageViewer img = new ImageViewer(i);
 
         Label l1 = new Label("Name:");
@@ -166,7 +156,7 @@ public class Accueil {
         Button b = new Button("Participate");
         Button b1 = new Button();
         Button b2 = new Button();
-        
+
         Label l4 = new Label(c.getAddress());
         EventLikeService ev = new EventLikeService();
         List<event_likes> list = ev.getEventLike();
@@ -181,16 +171,6 @@ public class Accueil {
 
             }
         }
-        
-       
-            
-            
-            
-            
-       
-        
-        
-        
 
         co3.add(b1);
         co.add(co1);
@@ -203,7 +183,6 @@ public class Accueil {
 
         coInit.add(img);
         coInit.add(co);
-      
 
         l2.addPointerPressedListener((evt) -> {
 

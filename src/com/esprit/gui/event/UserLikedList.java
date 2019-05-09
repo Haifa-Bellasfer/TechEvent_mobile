@@ -40,8 +40,9 @@ public class UserLikedList {
     Image img1, img2;
     Boolean likeb;
     Resources theme1;
+
     public UserLikedList(Resources theme) {
-        theme1=theme;
+        theme1 = theme;
         f = (Form) new Form(new BoxLayout(BoxLayout.Y_AXIS));
         f.getStyle().setBgColor(rgb(255, 255, 255));
         Image img = theme.getImage("logo.png");
@@ -90,9 +91,10 @@ public class UserLikedList {
         Container coInit = new Container(new BoxLayout(BoxLayout.X_AXIS));
         coInit.getStyle().setBgColor(rgb(204, 230, 255));
         EncodedImage placeholder = EncodedImage.createFromImage(Image.createImage(400, 400), true);
-
-        Image i = URLImage.createToStorage(placeholder, "http://localhost/PIDEV/dorsaf/TechEvent/web/img/uploads/" + c.getPhoto(), "http://localhost/PIDEV/dorsaf/TechEvent/web/img/uploads/" + c.getPhoto(), URLImage.RESIZE_SCALE);
-
+        Image i;
+        
+            i = URLImage.createToStorage(placeholder, "http://localhost/PIDEV/dorsaf/TechEvent/web/img/uploads/" + Session.current_event.getPhoto(), "http://localhost/PIDEV/dorsaf/TechEvent/web/img/uploads/" + Session.current_event.getPhoto(), URLImage.RESIZE_SCALE);
+       
         ImageViewer img = new ImageViewer(i);
 
         Label l1 = new Label("Name:");
@@ -112,7 +114,7 @@ public class UserLikedList {
         coInit.add(co);
 
         b.addActionListener((evt) -> {
-             Session.current_event = c;
+            Session.current_event = c;
 
             AfficheEvent af = new AfficheEvent(theme1);
             af.getF().show();

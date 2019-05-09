@@ -76,10 +76,12 @@ public class AfficheEvent {
                 l=true;
             }
         }
-        
-
-        Image i = URLImage.createToStorage(placeholder, "http://localhost/PIDEV/dorsaf/TechEvent/web/img/uploads/" + Session.current_event.getPhoto(), "http://localhost/PIDEV/dorsaf/TechEvent/web/img/uploads/" + Session.current_event.getPhoto(), URLImage.RESIZE_SCALE);
-        i.scaled(500, 500);
+        Image i;
+     
+         i= URLImage.createToStorage(placeholder, "http://localhost/PIDEV/dorsaf/TechEvent/web/img/uploads/" + Session.current_event.getPhoto(), "http://localhost/PIDEV/dorsaf/TechEvent/web/img/uploads/" + Session.current_event.getPhoto(), URLImage.RESIZE_SCALE);
+       
+               
+         i.scaled(500, 500);
         ImageViewer img = new ImageViewer(i);
         img.setHeight(70);
         Label name = new Label("Event Name :");

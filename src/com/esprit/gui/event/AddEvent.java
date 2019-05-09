@@ -5,7 +5,6 @@
  */
 package com.esprit.gui.event;
 
-
 import com.codename1.components.ImageViewer;
 import com.codename1.ui.Button;
 import com.codename1.ui.Calendar;
@@ -28,7 +27,6 @@ import com.esprit.service.event.EventService;
 import com.esprit.techevent.Session;
 
 import java.util.List;
-
 
 /**
  *
@@ -53,7 +51,7 @@ public class AddEvent {
         TextField address1 = new TextField();
         Label description = new Label("Description :");
         TextField description1 = new TextField();
-        Label price = new Label("Address :");
+        Label price = new Label("Price:");
         TextField price1 = new TextField();
         Label nb = new Label("Number of Participant :");
         TextField nb2 = new TextField();
@@ -71,10 +69,17 @@ public class AddEvent {
 
         Button b = new Button("Save");
         b.addActionListener((evt) -> {
+            
             Category catt = new Category(15, "buss");
-
-            ef = new event(catt, Session.user, name1.getText(), description1.getText(), Integer.parseInt(nb2.getText()), "4768e00203077731a2253721b2ee5def.jpeg", start1.getDate(), end1.getDate(), Double.parseDouble(price1.getText()), address1.getText());
-
+            try {
+                
+                ef = new event(catt, Session.user, name1.getText(), description1.getText(), Integer.parseInt(nb2.getText()), "a45813f00f13dc51c27315bd3e800785.jpeg", start1.getDate(), end1.getDate(), Double.parseDouble(price1.getText()), address1.getText());
+                
+            } catch (NumberFormatException en) {
+                Dialog.show("Alert", "Number of Participant and Price must be number ", "ok", null);
+            } catch(NullPointerException x){
+                
+            }
         });
         c1.add(name);
         c1.add(name1);
@@ -98,38 +103,31 @@ public class AddEvent {
         b.addActionListener((evt) -> {
 
             if (name1.getText().isEmpty()) {
-                  Dialog.show("Alert", "Name must be not empty","ok",null);
-                            
+                Dialog.show("Alert", "Name must be not empty", "ok", null);
+
             }
-             if (address1.getText().isEmpty()) {
-                  Dialog.show("Alert", "Address must be not empty","ok",null);
-                            
+            if (address1.getText().isEmpty()) {
+                Dialog.show("Alert", "Address must be not empty", "ok", null);
+
             }
-              if (description1.getText().isEmpty()) {
-                  Dialog.show("Alert", "Description must be not empty","ok",null);
-                            
+            if (description1.getText().isEmpty()) {
+                Dialog.show("Alert", "Description must be not empty", "ok", null);
+
             }
-               if (nb2.getText().isEmpty() ) {
-                  Dialog.show("Alert", "Number of Participant must be not empty and a number","ok",null);
-                            
+            if (nb2.getText().isEmpty()) {
+                Dialog.show("Alert", "Number of Participant must be not empty and a number", "ok", null);
             }
-               
-                if (price1.getText().isEmpty()) {
-                  Dialog.show("Alert", "Description must be not empty nd a number","ok",null);
-                            
+
+            if (price1.getText().isEmpty()) {
+                Dialog.show("Alert", "Description must be not empty nd a number", "ok", null);
+
             }
-               
-           
-       
-                
-           
-                
 
             EventService ev = new EventService();
             ev.ajoutTask(ef);
 
         });
-           Toolbar tb = f.getToolbar();
+        Toolbar tb = f.getToolbar();
         tb.addMaterialCommandToRightBar("Back", FontImage.MATERIAL_ARROW_BACK, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
@@ -139,6 +137,8 @@ public class AddEvent {
         });
 
     }
+
+
 
     public Form getF() {
         return f;
