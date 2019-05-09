@@ -12,10 +12,15 @@ import com.codename1.ui.Calendar;
 import com.codename1.ui.ComboBox;
 import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
+import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
 import com.codename1.ui.TextField;
+import com.codename1.ui.Toolbar;
+import com.codename1.ui.events.ActionEvent;
+import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
+import com.codename1.ui.util.Resources;
 import com.esprit.entity.event.Category;
 import com.esprit.entity.event.event;
 import com.esprit.service.event.CategoryService;
@@ -36,7 +41,7 @@ public class AddEvent {
     ImageViewer img;
     String filePath;
 
-    public AddEvent() {
+    public AddEvent(Resources theme) {
         f = new Form("Add Event");
         Container c1 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
         Container c2 = new Container(new BoxLayout(BoxLayout.X_AXIS));
@@ -119,6 +124,14 @@ public class AddEvent {
             EventService ev = new EventService();
             ev.ajoutTask(ef);
 
+        });
+           Toolbar tb = f.getToolbar();
+        tb.addMaterialCommandToRightBar("Back", FontImage.MATERIAL_ARROW_BACK, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                Accueil add = new Accueil(theme);
+                add.getF().show();
+            }
         });
 
     }

@@ -12,6 +12,7 @@ import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
 import com.codename1.ui.events.ActionListener;
 import com.esprit.entity.event.Category;
+import com.esprit.entity.event.User;
 import com.esprit.entity.event.event;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -85,7 +86,11 @@ public class EventService {
                 e.setEnd_date(d1);
                 e.setPhoto(obj.get("photo").toString());
                 System.out.println(e.getStatus());
-                
+                 Map<String, Object> userMap = (Map<String, Object>) obj.get("organizer");
+
+                int idu=((int) Float.parseFloat(userMap.get("id").toString()));
+                User u= new User(idu);
+                e.setOrganizer(u);
                 Map<String, Object> categoryMap = (Map<String, Object>) obj.get("category");
                 c.setCategory_name(categoryMap.get("category_Name").toString());
                 c.setId_category((int)Float.parseFloat(categoryMap.get("idCategory").toString()));

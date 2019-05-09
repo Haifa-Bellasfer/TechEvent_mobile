@@ -24,6 +24,8 @@ import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.util.Resources;
 import com.esprit.entity.event.event;
 import com.esprit.service.event.EventService;
+import com.esprit.techevent.Session;
+import java.util.List;
 
 /**
  *
@@ -48,24 +50,24 @@ public class UserEventList {
         f.add(img);
       
 
-//        EventService serviceTask = new EventService();
-//     //   List<event> eventList = serviceTask.getEventUser(Session.user.getId());
-//        for (event e : eventList) {
-//
-//            co1.add(Additem(e));
-//
-//        }
+        EventService serviceTask = new EventService();
+         List<event> eventList = serviceTask.getEvent();
+        for (event e : eventList) {
+                if(e.getOrganizer().getId()==Session.user.getId()){
+            co1.add(Additem(e));
+                }
+        }
         f.add(co1);
         f.show();
 
        
         
 
-        Toolbar tb = f.getToolbar();
-        tb.addMaterialCommandToRightBar("", FontImage.MATERIAL_ADD, new ActionListener() {
+          Toolbar tb = f.getToolbar();
+        tb.addMaterialCommandToRightBar("Back", FontImage.MATERIAL_ARROW_BACK, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                AddEvent add = new AddEvent();
+                Accueil add = new Accueil(theme);
                 add.getF().show();
             }
         });

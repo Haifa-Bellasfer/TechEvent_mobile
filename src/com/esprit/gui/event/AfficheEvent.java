@@ -18,7 +18,6 @@ import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
-import com.codename1.ui.TextArea;
 import com.codename1.ui.Toolbar;
 import com.codename1.ui.URLImage;
 import com.codename1.ui.events.ActionEvent;
@@ -113,6 +112,7 @@ public class AfficheEvent {
         end.add(endDate);
         f.add(end);
         facebook.getAllStyles().setBorder(Border.createEmpty());
+        facebook.getAllStyles().setMarginRight(1);
         all.add(facebook);
         all.add(comment);
         f.add(all);
@@ -151,14 +151,14 @@ public class AfficheEvent {
                 System.out.println("like");
                 
                 e.ajout(ev1);
-                like.setIcon(img2);
+                
                  AfficheEvent af = new AfficheEvent(theme);
                  af.getF().show();
             }else{
             
                 System.out.println("dislike");
                 e.Delete(ev1);
-                like.setIcon(img1);
+                
                 AfficheEvent af = new AfficheEvent(theme);
                 af.getF().show();
             }
