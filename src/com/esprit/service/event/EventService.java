@@ -33,7 +33,7 @@ public class EventService {
      public void ajoutTask(event e) {
         ConnectionRequest con = new ConnectionRequest();
         String Url = "http://localhost/PIDEV/dorsaf/TechEvent/web/Api/Add?eventName="+e.getEvent_name()+"&user="+e.getOrganizer().getId()+"&address="+e.getAddress()+"&nb="+e.getNb_participant()+"&categorie="+e.getCategory().getId_category()+"&photo="+e.getPhoto()+"&price="+e.getPrice_ticket()+"&description="+e.getDescription()+"&startDate="+e.getStart_date()+"&endDate="+e.getEnd_date();// création de l'URL
-         System.out.println(Url);
+         
         con.setUrl(Url);// Insertion de l'URL de notre demande de connexion
 
         con.addResponseListener((ev) -> {
@@ -96,9 +96,6 @@ public class EventService {
                 c.setCategory_name(categoryMap.get("category_Name").toString());
                 c.setId_category((int)Float.parseFloat(categoryMap.get("idCategory").toString()));
                 e.setCategory(c);
-                System.out.println(e);
-                System.out.println(c.getCategory_name());
-                System.out.println(c.getCategory_name());
                 listTasks.add(e);
 
             }
@@ -106,7 +103,6 @@ public class EventService {
         } catch (IOException ex) {
         }
 
-        System.out.println(listTasks);
         return listTasks;
 
     }
@@ -184,7 +180,7 @@ public class EventService {
         ConnectionRequest con = new ConnectionRequest();
         String Url ="http://localhost/PIDEV/dorsaf/TechEvent/web/Api/delete/"+ch;
         con.setUrl(Url);
-          System.out.println(Url);
+          
        
         NetworkManager.getInstance().addToQueueAndWait(con);
     }

@@ -35,7 +35,7 @@ import java.util.List;
 public class AddEvent {
 
     Form f;
-    ComboBox<String> cat1;
+    ComboBox<Category> cat1;
     event ef;
     ImageViewer img;
     String filePath;
@@ -64,13 +64,13 @@ public class AddEvent {
         CategoryService c = new CategoryService();
         List<Category> list = c.getCategory();
         for (int i = 0; i < list.size(); i++) {
-            cat1.addItem(list.get(i).getCategory_name());
+            cat1.addItem(list.get(i));
         }
 
         Button b = new Button("Save");
         b.addActionListener((evt) -> {
             
-            Category catt = new Category(15, "buss");
+            Category catt = cat1.getSelectedItem();
             try {
                 
                 ef = new event(catt, Session.user, name1.getText(), description1.getText(), Integer.parseInt(nb2.getText()), "a45813f00f13dc51c27315bd3e800785.jpeg", start1.getDate(), end1.getDate(), Double.parseDouble(price1.getText()), address1.getText());
@@ -93,12 +93,14 @@ public class AddEvent {
         c1.add(description1);
         c1.add(cat);
         c1.add(cat1);
+        c1.add(new Label("start Date :"));
         c1.add(start1);
+        c1.add(new Label("End Date :"));
         c1.add(end1);
-        f.add(c1);
-        c2.add(b);
-
-        f.add(c2);
+        
+        c1.add(b);
+f.add(c1);
+      //  f.add(c2);
 
         b.addActionListener((evt) -> {
 

@@ -85,7 +85,7 @@ public class UserEventList {
         EncodedImage placeholder = EncodedImage.createFromImage(Image.createImage(400, 400), true);
         Image i;
        
-            i = URLImage.createToStorage(placeholder, "http://localhost/PIDEV/dorsaf/TechEvent/web/img/uploads/" + Session.current_event.getPhoto(), "http://localhost/PIDEV/dorsaf/TechEvent/web/img/uploads/" + Session.current_event.getPhoto(), URLImage.RESIZE_SCALE);
+            i = URLImage.createToStorage(placeholder, "http://localhost/PIDEV/dorsaf/TechEvent/web/img/uploads/" + c.getPhoto(), "http://localhost/PIDEV/dorsaf/TechEvent/web/img/uploads/" + c.getPhoto(), URLImage.RESIZE_SCALE);
        
         ImageViewer img = new ImageViewer(i);
 
@@ -108,6 +108,8 @@ public class UserEventList {
         b.addActionListener((evt) -> {
             EventService serviceTask = new EventService();
             serviceTask.Delete(c.getId_event());
+            UserEventList u=new UserEventList(theme1);
+            u.getF().show();
         });
 
         return coInit;

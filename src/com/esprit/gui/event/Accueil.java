@@ -92,8 +92,31 @@ public class Accueil {
                 f.add(co1);
             }
 
+
+
+
             f.show();
         });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         Toolbar tb = f.getToolbar();
         tb.addMaterialCommandToOverflowMenu("Add Event", FontImage.MATERIAL_ADD, new ActionListener() {

@@ -81,9 +81,9 @@ public class AfficheEvent {
          i= URLImage.createToStorage(placeholder, "http://localhost/PIDEV/dorsaf/TechEvent/web/img/uploads/" + Session.current_event.getPhoto(), "http://localhost/PIDEV/dorsaf/TechEvent/web/img/uploads/" + Session.current_event.getPhoto(), URLImage.RESIZE_SCALE);
        
                
-         i.scaled(500, 500);
-        ImageViewer img = new ImageViewer(i);
-        img.setHeight(70);
+         
+       // ImageViewer img = new ImageViewer(i);
+        //img.setHeight(70);
         Label name = new Label("Event Name :");
         Label name1 = new Label();
         name1.setText(Session.current_event.getEvent_name());
@@ -93,7 +93,7 @@ public class AfficheEvent {
         f.add(co);
        
         
-        f.add(img);
+        f.add(i.scaled(1150, 1000));
         f.add(like);
         Label description = new Label("Description :");
         SpanLabel description1 = new SpanLabel();
