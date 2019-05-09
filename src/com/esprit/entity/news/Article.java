@@ -7,13 +7,12 @@ package com.esprit.entity.news;
 
 import java.util.Date;
 
-
-
 /**
  *
  * @author ihebc_000
  */
 public class Article {
+
     private int idArticle;
     private String titreArticle;
     private String contentArticle;
@@ -21,11 +20,12 @@ public class Article {
     private Date dateOfPublish;
     private String image;
     private Domain domain;
-    
+
     private static Article article;
+
     public static Article getInstance() {
-        if(article==null) {
-            article=new Article();
+        if (article == null) {
+            article = new Article();
         }
         return article;
     }
@@ -33,12 +33,10 @@ public class Article {
     public static void setArticle(Article article) {
         Article.article = article;
     }
-    
-    
 
     public Article() {
     }
-    
+
     public Article(int idArticle, String titreArticle, String contentArticle, int viewsNumber, Date dateOfPublish, String image, Domain domain) {
         this.idArticle = idArticle;
         this.titreArticle = titreArticle;
@@ -110,8 +108,28 @@ public class Article {
         return "Article{" + "idArticle=" + idArticle + ", titreArticle=" + titreArticle + ", contentArticle=" + contentArticle + ", viewsNumber=" + viewsNumber + ", dateOfPublish=" + dateOfPublish + ", image=" + image + ", domain=" + domain + '}';
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 31 * hash + this.idArticle;
+        return hash;
+    }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Article other = (Article) obj;
+        if (this.idArticle != other.idArticle) {
+            return false;
+        }
+        return true;
+    }
     
     
-    
+
 }

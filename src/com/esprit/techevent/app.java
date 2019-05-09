@@ -2,17 +2,12 @@ package com.esprit.techevent;
 
 
 import static com.codename1.ui.CN.*;
-import com.codename1.ui.Display;
 import com.codename1.ui.Form;
 import com.codename1.ui.Dialog;
-import com.codename1.ui.Label;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import com.codename1.io.Log;
 import com.codename1.ui.Toolbar;
-import java.io.IOException;
-import com.codename1.ui.layouts.BoxLayout;
-import com.codename1.io.NetworkEvent;
 import com.esprit.gui.news.ArticleGui;
 
 /**
@@ -52,7 +47,7 @@ public class app {
             current.show();
             return;
         }
-        ArticleGui h = new ArticleGui();
+        ArticleGui h = new ArticleGui(0);
         h.getF().show();
 
     }

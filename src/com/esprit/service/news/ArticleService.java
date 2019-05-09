@@ -12,6 +12,7 @@ import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
 import com.esprit.entity.news.Article;
 import com.esprit.entity.news.Domain;
+import com.esprit.techevent.Session;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,6 +24,15 @@ import java.util.Map;
  * @author ihebc_000
  */
 public class ArticleService {
+
+    private static ArticleService instance;
+
+    public static ArticleService getInstance() {
+        if (instance == null) {
+            instance = new ArticleService();
+        }
+        return instance;
+    }
 
     public ArrayList<Article> parseListArticleJson(String json) {
 
@@ -41,7 +51,6 @@ public class ArticleService {
                 article.setImage(obj.get("image").toString());
                 Map<String, Double> hm = (Map<String, Double>) obj.get("dateOfPublish");
                 long l = (long) (hm.get("timestamp") * 1000);
-                long t = (long) l * 10000;
                 Date d = new Date(l);
                 article.setDateOfPublish(d);
                 Map<String, Object> domain = (Map<String, Object>) obj.get("domain");
@@ -60,7 +69,7 @@ public class ArticleService {
 
     public ArrayList<Article> getList() {
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/TechEvent/web/news/all");
+        con.setUrl(Session.url_server + "news/all");
         con.addResponseListener((NetworkEvent evt) -> {
             ArticleService ser = new ArticleService();
             listArticles = ser.parseListArticleJson(new String(con.getResponseData()));
