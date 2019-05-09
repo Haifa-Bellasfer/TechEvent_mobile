@@ -104,6 +104,16 @@ public class Accueil {
                 add.getF().show();
             }
         });
+        
+        
+          tb.addMaterialCommandToOverflowMenu("", FontImage.MATERIAL_ADD, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                AddEvent add = new AddEvent(theme1);
+                add.getF().show();
+            }
+        });
+        
          tb.addMaterialCommandToOverflowMenu("My events Events", FontImage.MATERIAL_COLLECTIONS_BOOKMARK, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {

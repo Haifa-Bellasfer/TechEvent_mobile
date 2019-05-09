@@ -29,6 +29,7 @@ import com.esprit.techevent.Session;
 
 import java.util.List;
 
+
 /**
  *
  * @author Dorsaf
@@ -117,6 +118,9 @@ public class AddEvent {
                   Dialog.show("Alert", "Description must be not empty nd a number","ok",null);
                             
             }
+               
+           
+       
                 
            
                 
