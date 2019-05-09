@@ -15,6 +15,8 @@ import com.esprit.entity.event.Category;
 import com.esprit.entity.event.event;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -71,7 +73,16 @@ public class EventService {
                 e.setNb_participant((int) nb);
                 float price = Float.parseFloat(obj.get("priceTicket").toString());
                 e.setNb_participant((int) price);
-
+                HashMap<String, Double> hm = (HashMap<String, Double>) obj.get("startDate");
+                long l = (long) (hm.get("timestamp") * 1000);
+                long t = (long) l * 10000;
+                Date d = new Date(l);
+                e.setStart_date(d);
+                HashMap<String, Double> hm1 = (HashMap<String, Double>) obj.get("startDate");
+                long l1 = (long) (hm1.get("timestamp") * 1000);
+                long t1 = (long) l1 * 10000;
+                Date d1 = new Date(l1);
+                e.setEnd_date(d1);
                 e.setPhoto(obj.get("photo").toString());
                 System.out.println(e.getStatus());
                 

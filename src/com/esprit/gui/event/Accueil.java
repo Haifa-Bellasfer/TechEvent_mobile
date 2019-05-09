@@ -144,7 +144,7 @@ public class Accueil {
         List<event_likes> list = ev.getEventLike();
 
         b1.setIcon(img1);
-        b1.getAllStyles().setBorder(Border.createEmpty());;
+        b1.getAllStyles().setBorder(Border.createEmpty());
         b1.setVisible(false);
         for (event_likes event : list) {
             if ((Session.user.getId() == event.getUser_id()) && (event.getEvent_id() == c.getId_event())) {
@@ -153,6 +153,16 @@ public class Accueil {
 
             }
         }
+        
+       
+            
+            
+            
+            
+       
+        
+        
+        
 
         co3.add(b1);
         co.add(co1);

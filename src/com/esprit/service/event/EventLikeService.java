@@ -98,7 +98,11 @@ public class EventLikeService {
         String Url ="http://localhost/PIDEV/dorsaf/TechEvent/web/Api/dislike?idevent="+ev.getEvent_id()+"&iduser="+ev.getUser_id();
         con.setUrl(Url);
          System.out.println(Url);
-       
+       con.addResponseListener((e) -> {
+            String str = new String(con.getResponseData());
+          
+
+        });
         NetworkManager.getInstance().addToQueueAndWait(con);
     }
 
