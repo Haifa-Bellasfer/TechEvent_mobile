@@ -116,6 +116,12 @@ public class CartGui {
                  e.delete(evnt.getId_ticket());
 
             });
+               code.addActionListener((evt) -> {
+                
+            
+                TicketForm tf = new TicketForm(theme, evnt);
+                tf.getF().show();
+            });
 
         }
   Toolbar tb = f.getToolbar();
